@@ -70,6 +70,37 @@ function orderAgnosticBinarySearch(array,target){
 let arr1 = [10,20,30,40,50,60];
 let arr2 = [60,50,40,30,20,10];
 
+
+function binarySearch(sortedArray, target) {
+    let left = 0;
+    let right = sortedArray.length - 1;
+
+    while (left <= right) {
+        const mid = Math.floor((left + right) / 2);
+
+        if (sortedArray[mid] === target) {
+            return mid;  // Element found, return the index
+        } else if (sortedArray[mid] < target) {
+            left = mid + 1;  // Target is in the right half
+        } else {
+            right = mid - 1;  // Target is in the left half
+        }
+    }
+
+    return -1;  // Element not found
+}
+
+// Example usage:
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const target = 5;
+const result = binarySearch(arr, target);
+
+if (result !== -1) {
+    console.log(`Element found at index ${result}`);
+} else {
+    console.log("Element not found in the array");
+}
+
 const resultOfSearch = orderAgnosticBinarySearch(arr1,50);
 
 console.log(resultOfSearch);
