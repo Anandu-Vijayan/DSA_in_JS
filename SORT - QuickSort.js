@@ -45,3 +45,37 @@ console.log("Unsorted Array", arr1);
 quickSort(arr1);
 
 console.log("Sorted Array", arr1);
+
+//==========================================================SIMPLE=========================================//
+
+// Partition function
+function partition(array, low, high) {
+  const pivot = array[high];
+  let i = low - 1;
+
+  for (let j = low; j < high; j++) {
+    if (array[j] < pivot) {
+      i++;
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+  [array[i + 1], array[high]] = [array[high], array[i + 1]];
+  return i + 1;
+}
+
+// Quicksort function
+function quickSort(array, low = 0, high = array.length - 1) {
+  if (low < high) {
+    const pi = partition(array, low, high);
+
+    // Recursively sort elements before and after partition
+    quickSort(array, low, pi - 1);
+    quickSort(array, pi + 1, high);
+  }
+  return array;
+}
+
+// Example usage
+const array = [34, 7, 23, 32, 5, 62];
+const sortedArray = quickSort(array);
+console.log(sortedArray); // Output: [5, 7, 23, 32, 34, 62]
